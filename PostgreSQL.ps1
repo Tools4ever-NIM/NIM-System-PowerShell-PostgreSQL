@@ -45,6 +45,13 @@ function Idm-SystemInfo {
                 value = ''
             }
             @{
+                name = 'Driver'
+                type = 'textbox'
+                label = 'Driver'
+                tooltip = 'DriverName used for PostgreSQL SQL server'
+                value = '{PostgreSQL ODBC Driver(UNICODE)}'
+            }
+            @{
                 name = 'Database'
                 type = 'textbox'
                 label = 'Database'
@@ -793,7 +800,7 @@ function Open-PostgreSQLSqlConnection {
 
     $connection_params = ConvertFrom-Json2 $ConnectionParams
 
-    $connectionString = "Driver={PostgreSQL ODBC Driver(UNICODE)};Server=$($connection_params.Hostname);Port=$($connection_params.Port);Database=$($connection_params.Database);Uid=$($connection_params.Username);Pwd=$($connection_params.Password)"
+    $connectionString = "Driver=$($connection_params.Driver);Server=$($connection_params.Hostname);Port=$($connection_params.Port);Database=$($connection_params.Database);Uid=$($connection_params.Username);Pwd=$($connection_params.Password)"
 
     if ($Global:PostgreSQLSqlConnection -and $connection_string -ne $Global:PostgreSQLSqlConnectionString) {
         Log info "PostgreSQLSqlConnection connection parameters changed"
