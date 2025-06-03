@@ -25,7 +25,7 @@ function Idm-SystemInfo {
         [string] $ConnectionParams
     )
 
-    Log info "-Connection=$Connection -TestConnection=$TestConnection -Configuration=$Configuration -ConnectionParams='$ConnectionParams'"
+    Log verbose "-Connection=$Connection -TestConnection=$TestConnection -Configuration=$Configuration -ConnectionParams='$ConnectionParams'"
     
     if ($Connection) {
         @(
@@ -100,7 +100,7 @@ function Idm-SystemInfo {
         @()
     }
 
-    Log info "Done"
+    Log verbose "Done"
 }
 
 
@@ -228,7 +228,7 @@ function Idm-Dispatcher {
         [string] $FunctionParams
     )
 
-    Log info "-Class='$Class' -Operation='$Operation' -GetMeta=$GetMeta -SystemParams='$SystemParams' -FunctionParams='$FunctionParams'"
+    Log verbose "-Class='$Class' -Operation='$Operation' -GetMeta=$GetMeta -SystemParams='$SystemParams' -FunctionParams='$FunctionParams'"
 
     if ($Class -eq '') {
 
@@ -642,7 +642,7 @@ function Idm-Dispatcher {
 
     }
 
-    Log info "Done"
+    Log verbose "Done"
 }
 
 
@@ -803,7 +803,7 @@ function Open-PostgreSQLSqlConnection {
     $connectionString = "Driver=$($connection_params.Driver);Server=$($connection_params.Hostname);Port=$($connection_params.Port);Database=$($connection_params.Database);Uid=$($connection_params.Username);Pwd=$($connection_params.Password)"
 
     if ($Global:PostgreSQLSqlConnection -and $connection_string -ne $Global:PostgreSQLSqlConnectionString) {
-        Log info "PostgreSQLSqlConnection connection parameters changed"
+        Log verbose "PostgreSQLSqlConnection connection parameters changed"
         Close-PostgreSQLSqlConnection
     }
 
@@ -816,7 +816,7 @@ function Open-PostgreSQLSqlConnection {
         #Log debug "Reusing PostgreSQLSqlConnection"
     }
     else {
-        Log info "Opening PostgreSQLSqlConnection '$connection_string'"
+        Log verbose "Opening PostgreSQLSqlConnection '$connection_string'"
 
         try {
             $connection = New-Object System.Data.Odbc.OdbcConnection
@@ -834,14 +834,14 @@ function Open-PostgreSQLSqlConnection {
             Write-Error $_
         }
 
-        Log info "Done"
+        Log verbose "Done"
     }
 }
 
 
 function Close-PostgreSQLSqlConnection {
     if ($Global:PostgreSQLSqlConnection) {
-        Log info "Closing PostgreSQLSqlConnection"
+        Log verbose "Closing PostgreSQLSqlConnection"
 
         try {
             $Global:PostgreSQLSqlConnection.Close()
@@ -851,6 +851,6 @@ function Close-PostgreSQLSqlConnection {
             # Purposely ignoring errors
         }
 
-        Log info "Done"
+        Log verbose "Done"
     }
 }
