@@ -1,4 +1,7 @@
 # PostgreSQL
+
+Read the [PostgreSQL integration documentation](https://docs.nimsuite.com/en/integrations/postgresql) for connector details and related guides.
+
 <img src="https://github.com/Tools4ever-NIM/NIM-System-PowerShell-PostgreSQL/assets/24281600/bbab7832-f23a-420d-9919-bb935ff82977" width="256px" />
 
 
